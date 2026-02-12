@@ -6,8 +6,8 @@
 <title>For Cupcake ❤️</title>
 
 <style>
-body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#ff8ecf,#8ecbff);color:white;text-align:center;overflow:hidden}
-.page{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px 18px}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#ff8ecf,#8ecbff);color:white;text-align:center;overflow-x:hidden;overflow-y:auto}
+.page{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 18px}
 .hidden{display:none}
 
 /* Landing page */
@@ -21,16 +21,16 @@ p.show{opacity:1;transform:translateY(0)}
 
 /* Letter page */
 #letterPage{background:linear-gradient(160deg,#0f172a,#1e293b,#020617);color:#f1f5f9}
-.card{max-width:820px;background:rgba(255,255,255,.06);padding:35px 26px;border-radius:24px;backdrop-filter:blur(14px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.card{max-width:820px;background:rgba(255,255,255,.06);padding:40px 30px;border-radius:24px;backdrop-filter:blur(14px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
 .card h1{font-size:2.4em;margin-bottom:20px}
-.card p{font-size:1.18em;line-height:1.85;margin:18px 0}
+.card p{font-size:1.18em;line-height:1.9;margin:20px 0}
 .sig{margin-top:30px;font-style:italic;opacity:.85}
 .back{display:inline-block;margin-top:30px;padding:13px 26px;border-radius:30px;background:white;color:#e11d48;text-decoration:none;font-weight:600;box-shadow:0 8px 25px rgba(0,0,0,.35);transition:.25s;border:none;cursor:pointer}
 .back:hover{transform:scale(1.08)}
 
 /* Floating flowers */
-.flower{position:fixed;bottom:-40px;font-size:22px;opacity:.85;animation:float linear forwards;pointer-events:none}
-@keyframes float{to{transform:translateY(-110vh) translateX(var(--drift));opacity:0}}
+.flower{position:fixed;bottom:-40px;font-size:24px;opacity:.9;animation:float linear forwards;pointer-events:none}
+@keyframes float{to{transform:translateY(-120vh) translateX(var(--drift));opacity:0}}
 </style>
 </head>
 
@@ -78,14 +78,14 @@ function openLetter(){
   document.getElementById('homePage').classList.add('hidden');
   document.getElementById('letterPage').classList.remove('hidden');
   document.body.style.background = 'linear-gradient(160deg,#0f172a,#1e293b,#020617)';
-  window.scrollTo(0,0);
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function goBack(){
   document.getElementById('letterPage').classList.add('hidden');
   document.getElementById('homePage').classList.remove('hidden');
   document.body.style.background = 'linear-gradient(135deg,#ff8ecf,#8ecbff)';
-  window.scrollTo(0,0);
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // reveal animation
@@ -95,19 +95,21 @@ const observer=new IntersectionObserver(entries=>{
 
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-// floating flowers
-const flowers=["🌸","🌷","🌹","💐"];
+// more floating flowers
+const flowers=["🌸","🌷","🌹","💐","🌺","🌼","🌻"];
 setInterval(()=>{
   if(document.hidden)return;
-  let f=document.createElement('div');
-  f.className='flower';
-  f.textContent=flowers[Math.floor(Math.random()*flowers.length)];
-  f.style.left=Math.random()*100+'vw';
-  f.style.setProperty('--drift',(Math.random()*80-40)+'px');
-  f.style.animationDuration=(8+Math.random()*6)+'s';
-  document.body.appendChild(f);
-  setTimeout(()=>f.remove(),14000);
-},2000);
+  for(let i=0;i<2;i++){
+    let f=document.createElement('div');
+    f.className='flower';
+    f.textContent=flowers[Math.floor(Math.random()*flowers.length)];
+    f.style.left=Math.random()*100+'vw';
+    f.style.setProperty('--drift',(Math.random()*120-60)+'px');
+    f.style.animationDuration=(7+Math.random()*6)+'s';
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),15000);
+  }
+},1500);
 </script>
 
 </body>
