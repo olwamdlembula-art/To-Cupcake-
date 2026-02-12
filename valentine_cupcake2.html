@@ -4,101 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Cupcake ❤️</title>
-
 <style>
-*{
-  box-sizing:border-box;
-}
+body{margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff8ecf,#8ecbff);font-family:'Segoe UI',sans-serif;overflow:hidden;text-align:center;color:white;transition:background 1s}
+.page{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;opacity:1;transition:opacity .8s}
+.hidden{opacity:0;pointer-events:none}
+.container{position:relative;z-index:2;max-width:750px;padding:20px}
+h1{font-size:3em;margin-bottom:10px}
+.date{font-size:1.1em;opacity:.9;margin-bottom:20px}
+p{font-size:1.25em;line-height:1.7;opacity:0;transform:translateY(20px);transition:.8s}
+p.show{opacity:1;transform:translateY(0)}
+.quote{margin-top:25px;font-style:italic;opacity:.9}
+.card{max-width:820px;padding:30px;border-radius:22px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.sig{margin-top:22px;font-style:italic;text-align:right;opacity:.9}
+button{margin-top:25px;padding:12px 22px;border:none;border-radius:25px;background:white;color:#ff4d6d;font-size:1.1em;cursor:pointer;transition:.3s}
+button:hover{transform:scale(1.1)}
+.progress{position:fixed;top:0;left:0;height:4px;background:white;width:0%;z-index:5}
+.theme{position:fixed;bottom:15px;right:15px;padding:10px 14px;border-radius:20px;background:white;color:#ff4d6d;font-size:.9em;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
 
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  background:linear-gradient(135deg,#ff8ecf,#8ecbff);
-  color:white;
-  text-align:center;
-  overflow-x:hidden;
-  transition:background 0.8s ease;
-}
+<div id="page1" class="page">
+<div class="container">
+<h1>Happy Valentine’s Day, Cupcake 💖</h1>
+<div class="date">Since 23 September ❤️</div>
+<p class="reveal">Out of billions of people in this world, somehow our paths crossed — and that became my favourite coincidence. If life restarted a thousand times, I’d still hope every version leads me back to you.</p>
+<p class="reveal">If there were infinite timelines like Stranger Things, I’d still cross every world just to find you again.</p>
+<p class="reveal">Like Percy Jackson belongs to the sea, my heart belongs with you.</p>
+<p class="reveal">In true Bridgerton fashion — you are, and always will be, the object of all my affection.</p>
+<div class="quote">Pink skies, blue dreams, and you — my favourite forever.</div>
+<button onclick="openLetter()">Open my heart 💌</button>
+</div>
+</div>
 
-/* Main wrapper */
-.wrapper{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:40px 20px;
-}
+<div id="page2" class="page hidden">
+<div class="card">
+<h1>To the one who found me 🌙</h1>
+<p class="reveal">I don’t think you realise how quietly important you became to my days. Somewhere between good mornings and late night talks, you became the reason I look forward to tomorrow.</p>
+<p class="reveal">You slowly turned ordinary moments into something I remember for a long time. A simple message from you can change my mood, and a small laugh we share stays in my mind hours later.</p>
+<p class="reveal">Comfort isn’t silence — sometimes it’s a name lighting up your screen. With you everything feels easy and real, like I don’t have to pretend or filter who I am.</p>
+<p class="reveal">I like how naturally you fit into my thoughts. A song plays and I think of you. The sky changes colour and I wish you could see it with me. When something happens, you’re the first person I want to tell.</p>
+<p class="reveal">There’s something peaceful about knowing you exist in the same world as me at the same time. Even when we’re far apart, it never really feels distant.</p>
+<p class="reveal">If distance is part of our story, patience will be too. Some people aren’t meant to be rushed — they’re meant to be chosen again and again, until one day the waiting turns into a moment you never forget.</p>
+<p class="reveal">So this is me choosing you — not just on special days, but on normal ones too. On quiet evenings, random afternoons, and days where nothing exciting happens except you being there.</p>
+<p class="reveal">And if life keeps moving forward the way it does, I just hope wherever I end up, you’re somewhere in that future with me.</p>
+<p class="sig">Yours, in every timeline ❤️</p>
+<button onclick="goBack()">Go back</button>
+</div>
+</div>
 
-/* Glass card */
-.card{
-  width:100%;
-  max-width:750px;
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(14px);
-  border-radius:24px;
-  padding:35px 28px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.25);
-  transition:all 0.6s ease;
-}
+<div class="theme" onclick="toggleTheme()">Change mood ✨</div>
 
-/* Typography */
-h1{
-  font-size:clamp(28px,6vw,42px);
-  margin-bottom:10px;
-}
+<script>
+function openLetter(){document.body.style.background='linear-gradient(160deg,#1b1b2f,#162447,#1f4068)';document.getElementById('page1').classList.add('hidden');document.getElementById('page2').classList.remove('hidden');reveal()}
+function goBack(){document.body.style.background='linear-gradient(135deg,#ff8ecf,#8ecbff)';document.getElementById('page2').classList.add('hidden');document.getElementById('page1').classList.remove('hidden');reveal()}
 
-.date{
-  font-size:14px;
-  opacity:0.85;
-  margin-bottom:22px;
-}
+function reveal(){document.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('show'),i*200))}
+reveal();
 
-p{
-  font-size:clamp(15px,4vw,18px);
-  line-height:1.6;
-  margin:12px 0;
-}
+window.addEventListener('scroll',()=>{let h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress').style.width=(window.scrollY/h)*100+'%'});
 
-.quote{
-  margin-top:18px;
-  font-style:italic;
-  opacity:0.9;
-}
-
-button{
-  margin-top:24px;
-  padding:14px 26px;
-  border:none;
-  border-radius:30px;
-  background:white;
-  color:#ff4d6d;
-  font-size:16px;
-  cursor:pointer;
-  transition:all 0.3s ease;
-}
-
-button:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 20px rgba(255,255,255,0.6);
-}
-
-/* Letter section hidden initially */
-#letterSection{
-  display:none;
-  margin-top:35px;
-  animation:fadeUp 1.2s ease forwards;
-}
-
-/* Floating hearts */
-.heart{
-  position:fixed;
-  bottom:-10px;
-  font-size:22px;
-  animation:floatUp linear forwards;
-  pointer-events:none;
-}
-
-@keyframes floatUp{
-  to{
-    transform:translateY(-
+let alt=false;
+function toggleTheme(){alt=!alt;document.body.style.background=alt?'linear-gradient(135deg,#000000,#434343)':'linear-gradient(135deg,#ff8ecf,#8ecbff)'}
+</script>
+</body>
+</html>
