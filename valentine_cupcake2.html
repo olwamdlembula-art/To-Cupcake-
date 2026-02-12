@@ -168,4 +168,19 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // Floating flowers
 const flowers = ["🌸","🌷","🌹","💐","🌺","🌼","🌻"];
 setInterval(() => {
-  if (document.hidden)
+  if (document.hidden) return;
+  for (let i = 0; i < 2; i++) {
+    const f = document.createElement('div');
+    f.className = 'flower';
+    f.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+    f.style.left = Math.random() * 100 + 'vw';
+    f.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+    f.style.animationDuration = (7 + Math.random() * 6) + 's';
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 15000);
+  }
+}, 1500);
+</script>
+
+</body>
+</html>
