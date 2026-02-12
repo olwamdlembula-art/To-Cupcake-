@@ -94,10 +94,10 @@
 
 <div class="container">
     <h1>Happy Valentine’s Day, Cupcake 💖</h1>
-    <div class="date">Since 23 September ❤️</div>
+    <div class="date">Since 23 September 2025 ❤️</div>
 
     <p>
-       Out of billions of people in this world, somehow our paths crossed — and that became my favourite coincidence. If life restarted a thousand times, I’d still hope every version leads me back to you
+       Out of billions of people in this world, somehow our paths crossed — and that became my favourite coincidence. If life restarted a thousand times, I’d choose you every time
     </p>
 
     <p>
@@ -111,22 +111,29 @@
     </p>
 
     <p>
-        In true Bridgerton fashion —
+        In true Bridgerton fashion
         you are, and always will be,
         the object of all my affection.
     </p>
 
     <div class="quote">
-        Pink skies, blue dreams, and you — my favourite forever.
+        Pink skies, blue dreams, and you my favourite forever.
     </div>
 
-    <button onclick="loveMessage()">Open my heart 💌</button>
-</div>
+  <button onclick="loveMessage()">Open my heart 💌</button>
+<div id="letter" style="margin-top:20px;"></div> <!-- placeholder for the letter -->
 
 <script>
 function loveMessage(){
-    alert("I loved you yesterday, I love you today, and I’ll love you in every tomorrow. Happy Valentine’s Day Cupcake 💕");
+    const letterDiv = document.getElementById("letter");
+    letterDiv.innerHTML = `
+        <p>My Dearest Cupcake 💖,</p>
+        <p>Every moment with you feels like a beautiful dream. I am endlessly grateful that our paths crossed in this lifetime, and if I had a thousand lives, I'd choose you every single time.</p>
+        <p>You are my heart, my joy, and my favorite adventure. Thank you for being you — perfectly, wonderfully, you.</p>
+        <p>Forever yours,<br>💌</p>
+    `;
 }
+</script>
 
 setInterval(()=>{
     let heart=document.createElement("div");
