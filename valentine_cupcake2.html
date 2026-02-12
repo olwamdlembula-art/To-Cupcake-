@@ -1,174 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Cupcake ❤️</title>
-<style>
-body {
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  text-align:center;
-  color:white;
-  transition:background 1s;
-  background: linear-gradient(135deg,#ff8ecf,#8ecbff);
-  overflow-x:hidden;
-}
-
-.page {
-  position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:1;
-  transition:opacity .8s;
-  padding:20px;
-}
-
-.hidden {
-  opacity:0;
-  pointer-events:none;
-}
-
-.container {
-  position:relative;
-  z-index:2;
-  max-width:750px;
-  padding:20px;
-  animation:fadeIn 2s ease-in-out;
-}
-
-h1 { font-size:3em; margin-bottom:10px }
-.date { font-size:1.1em; opacity:.9; margin-bottom:20px }
-p { font-size:1.25em; line-height:1.7 }
-.quote { margin-top:25px; font-style:italic; opacity:.9 }
-.card {
-  max-width:820px;
-  padding:30px;
-  border-radius:22px;
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(10px);
-  box-shadow:0 20px 50px rgba(0,0,0,.35);
-}
-
-.sig { margin-top:22px; font-style:italic; text-align:right; opacity:.9 }
-button {
-  margin-top:25px;
-  padding:12px 22px;
-  border:none;
-  border-radius:25px;
-  background:white;
-  color:#ff4d6d;
-  font-size:1.1em;
-  cursor:pointer;
-  transition:.3s;
-}
-button:hover { transform:scale(1.1) }
-
-.heart, .flower, .photo {
-  position:absolute;
-  animation:float linear infinite;
-  pointer-events:none;
-}
-.heart { color:#ff2e63; font-size:24px }
-.flower { font-size:28px }
-.photo { width:110px; height:110px; object-fit:cover; border-radius:50%; filter:drop-shadow(0 10px 15px rgba(0,0,0,.25)) }
-
-@keyframes float {
-  0% { transform:translateY(100vh) scale(.6); opacity:0 }
-  50% { opacity:1 }
-  100% { transform:translateY(-10vh) scale(1.15); opacity:0 }
-}
-
-@keyframes fadeIn {
-  from { opacity:0; transform:translateY(20px) }
-  to { opacity:1; transform:translateY(0) }
-}
-</style>
-</head>
-<body>
-
-<div id="page1" class="page">
-  <div class="container">
-    <h1>Happy Valentine’s Day, Cupcake 💖</h1>
-    <div class="date">Since 23 September ❤️</div>
-    <p>Out of billions of people in this world, somehow our paths crossed — and that became my favourite coincidence. If life restarted a thousand times, I’d still hope every version leads me back to you.</p>
-    <p>If there were infinite timelines like Stranger Things, I’d still cross every world just to find you again.</p>
-    <p>Like Percy Jackson belongs to the sea, my heart belongs with you.</p>
-    <p>In true Bridgerton fashion — you are, and always will be, the object of all my affection.</p>
-    <div class="quote">Pink skies, blue dreams, and you — my favourite forever.</div>
-    <button onclick="openLetter()">Open my heart 💌</button>
-  </div>
-</div>
-
-<div id="page2" class="page hidden">
-  <div class="card">
-    <h1>To The Love Of My Life</h1>
-    <p id="typed"></p>
-    <p class="sig">Yours, in every timeline ❤️</p>
-    <button onclick="goBack()">Go back</button>
-  </div>
-</div>
-
-<script>
-let floating=[];
-const MAX_FLOAT=35;
-
-function spawn(type,content,duration){
-  if(!document.getElementById('page2').classList.contains('hidden')) return;
-  if(floating.length>MAX_FLOAT){floating[0].remove(); floating.shift();}
-  const el = document.createElement(type==='img'?'img':'div');
-  el.className = type==='img'?'photo':type;
-  if(type==='img') el.src = content;
-  else el.innerHTML = content;
-  el.style.left = Math.random()*100+'vw';
-  el.style.animationDuration = duration+'s';
-  document.body.appendChild(el);
-  floating.push(el);
-  setTimeout(()=>{el.remove(); floating=floating.filter(e=>e!==el)}, duration*1000)
-}
-
-setInterval(()=>spawn('heart','❤️',5+Math.random()*3),900);
-const flowers=['🌷','🌹','🌸','💐','🌺','🤍🌹','❤️🌹'];
-setInterval(()=>spawn('flower',flowers[Math.floor(Math.random()*flowers.length)],6+Math.random()*3),1400);
-const photos=['her.png','me.png'];
-setInterval(()=>spawn('img',photos[Math.floor(Math.random()*photos.length)],9+Math.random()*4),2600);
-
-const letter = `I don’t think you realize how quietly you took up space in my life. It wasn’t sudden, it wasn’t loud. It just happened naturally. One day, you were someone I talked to, and without noticing, you became someone I needed to hear from.
-You turn ordinary moments into little sparks I look forward to. A notification from you makes my day. Talking to you never feels forced or empty. It feels like home, even through a screen.
-I catch myself wanting to tell you everything. The small, random thoughts. The little things that happen that no one else cares about. They matter to me because I want to share them with you. With you, I don’t have to pretend. I don’t have to be impressive or interesting. I can just be myself. And somehow, that’s enough.
-Even quiet moments feel brighter knowing you exist somewhere in the same world as me. Songs remind me of you. Places make me wish you were there. I like how naturally you live in my thoughts.
-Distance doesn’t change this. If anything, it makes me more certain. This isn’t about convenience. It’s about choosing you over and over again.
-I don’t know exactly what the future looks like, but I know I want you in it. Laughing with me, talking with me, existing beside me. Not just as a memory, but as my person.
-So this Valentine’s Day, and every ordinary day, I’m choosing you. Quiet evenings, random afternoons, moments when nothing happens except you being in my heart. I’m choosing you. Always.`;
-
-function typeLetter(){
-  const el = document.getElementById('typed');
-  el.innerHTML='';
-  let i=0;
-  function type(){
-    if(i<letter.length){
-      el.innerHTML += letter[i]==='\n'?'<br>':letter[i];
-      i++;
-      setTimeout(type,25);
-    }
-  }
-  type();
-}
-
-function openLetter(){
-  document.body.style.background='linear-gradient(160deg,#1b1b2f,#162447,#1f4068)';
-  document.getElementById('page1').classList.add('hidden');
-  document.getElementById('page2').classList.remove('hidden');
-  typeLetter();
-}
-
-function goBack(){
-  document.body.style.background='linear-gradient(135deg,#ff8ecf,#8ecbff)';
-  document.getElementById('page2').classList.add('hidden');
-  document.getElementById('page1').classList.remove('hidden');
-}
-</script>
-</body>
-</html>
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/valentines_message (1).html b/valentines_message (1).html
+index 100d7962c6671ce4d4311a965eb99371575dca95..b82a883ebe817452db6dcc7a39bd2a9915d3b3ce 100644
+--- a/valentines_message (1).html	
++++ b/valentines_message (1).html	
+@@ -11,49 +11,59 @@ body{margin:0;height:100vh;display:flex;justify-content:center;align-items:cente
+ h1{font-size:3em;margin-bottom:10px}
+ .date{font-size:1.1em;opacity:.9;margin-bottom:20px}
+ p{font-size:1.25em;line-height:1.7}
+ .quote{margin-top:25px;font-style:italic;opacity:.9}
+ .card{max-width:800px;padding:28px 26px;border-radius:22px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+ .sig{margin-top:22px;font-style:italic;text-align:right;opacity:.9}
+ button{margin-top:25px;padding:12px 22px;border:none;border-radius:25px;background:white;color:#ff4d6d;font-size:1.1em;cursor:pointer;transition:.3s}
+ button:hover{transform:scale(1.1)}
+ .heart,.flower,.photo{position:absolute;animation:float linear infinite;pointer-events:none}
+ .heart{color:#ff2e63;font-size:24px}
+ .flower{font-size:28px}
+ .photo{width:120px;height:120px;object-fit:cover;border-radius:50%;filter:drop-shadow(0 10px 15px rgba(0,0,0,.25))}
+ @keyframes float{0%{transform:translateY(100vh) scale(.6);opacity:0}50%{opacity:1}100%{transform:translateY(-10vh) scale(1.2);opacity:0}}
+ @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+ </style>
+ </head>
+ <body><!-- PAGE 1 --><div id="page1" class="page">
+ <div class="container">
+ <h1>Happy Valentine’s Day, Cupcake 💖</h1>
+ <div class="date">Since 23 September 2025 ❤️</div>
+ <p>Out of billions of people in this world, somehow our paths crossed and that became my favourite coincidence. If life restarted a thousand times, I’d still hope every version leads me back to you.</p>
+ <p>If there were infinite timelines like Stranger Things, I’d still cross every world just to find you again.</p>
+ <p>Like Percy Jackson belongs to the sea, my heart belongs with you.</p>
+ <p>In true Bridgerton fashion you are, and always will be, the object of all my affection.</p>
+ <div class="quote">Pink skies, blue dreams, and you my favourite forever.</div>
+-<button onclick="openLetter()">Open my heart 💌</button>
++<button onclick="openLetter()" aria-label="Open the letter">Open my heart 💌</button>
+ </div>
+ </div><!-- PAGE 2 --><div id="page2" class="page hidden">
+ <div class="card">
+ <h1>To the one who found me 🌙</h1>
+ <p>I don’t think you realise how quietly important you became to my days. At first it was just messages, just conversations, just small moments but somewhere between good mornings and late night talks, you stopped being a part of my day and became the reason I looked forward to it.</p>
+ <p>You taught me that comfort isn’t always silence, sometimes it’s a name lighting up your screen. Sometimes it’s knowing there’s a person who listens to the smallest details you almost didn’t say. With you everything feels easy and real.</p>
+ <p>I love how you exist in my thoughts randomly. A song plays and I think of you. The sky changes colour and I wish you could see it with me. Something funny happens and my first instinct is to tell you.</p>
+ <p>If distance is part of our story, then patience will be too. Because some people aren’t meant to be rushed they’re meant to be chosen again and again until the day you finally stand next to them.</p>
+ <p>So this is me choosing you. Not just today, but in ordinary days too.</p>
+ <p class="sig">Yours, in every timeline ❤️</p>
+-<button onclick="goBack()">Go back</button>
++<button onclick="goBack()" aria-label="Go back to the first page">Go back</button>
+ </div>
+ </div><script>
+ function openLetter(){document.getElementById('page1').classList.add('hidden');document.getElementById('page2').classList.remove('hidden');document.body.style.background='linear-gradient(160deg,#1b1b2f,#162447,#1f4068)'}
+ function goBack(){document.getElementById('page2').classList.add('hidden');document.getElementById('page1').classList.remove('hidden');document.body.style.background='linear-gradient(135deg,#ff8ecf,#8ecbff)'}
+ function spawn(type,content,duration){const el=document.createElement(type==='img'?'img':'div');el.className=type==='img'?'photo':type;if(type==='img')el.src=content;else el.innerHTML=content;el.style.left=Math.random()*100+'vw';el.style.animationDuration=duration+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),duration*1000)}
++
++function canLoadImage(src){
++return new Promise(resolve=>{const img=new Image();img.onload=()=>resolve(true);img.onerror=()=>resolve(false);img.src=src})
++}
++
+ setInterval(()=>spawn('heart','❤️',Math.random()*3+3),400)
+ const flowers=['🌷','🌹','🌸','💐','🌺','🤍🌹','❤️🌹']
+ setInterval(()=>spawn('flower',flowers[Math.floor(Math.random()*flowers.length)],Math.random()*4+5),900)
++
+ const photos=['her.png','me.png']
+-setInterval(()=>spawn('img',photos[Math.floor(Math.random()*photos.length)],Math.random()*6+7),1800)
++Promise.all(photos.map(canLoadImage)).then(results=>{
++const availablePhotos=photos.filter((_,index)=>results[index])
++if(availablePhotos.length===0)return
++setInterval(()=>spawn('img',availablePhotos[Math.floor(Math.random()*availablePhotos.length)],Math.random()*6+7),1800)
++})
+ </script></body>
+-</html>
+\ No newline at end of file
++</html>
+ 
+EOF
+)
