@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Love ❤️</title>
+<title>For Cupcake ❤️</title>
 
 <style>
     body{
@@ -12,7 +12,7 @@
         display:flex;
         justify-content:center;
         align-items:center;
-        background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+        background:linear-gradient(135deg,#ff8ecf,#8ecbff);
         font-family:'Segoe UI',sans-serif;
         overflow:hidden;
         text-align:center;
@@ -22,7 +22,7 @@
     .container{
         position:relative;
         z-index:2;
-        max-width:700px;
+        max-width:750px;
         padding:20px;
         animation:fadeIn 2s ease-in-out;
     }
@@ -30,6 +30,12 @@
     h1{
         font-size:3em;
         margin-bottom:10px;
+    }
+
+    .date{
+        font-size:1.1em;
+        opacity:0.9;
+        margin-bottom:20px;
     }
 
     p{
@@ -43,7 +49,6 @@
         opacity:0.9;
     }
 
-    /* floating hearts */
     .heart{
         position:absolute;
         color:#ff2e63;
@@ -51,7 +56,6 @@
         animation:float 6s linear infinite;
     }
 
-    /* flowers */
     .flower{
         position:absolute;
         font-size:28px;
@@ -65,8 +69,8 @@
     }
 
     @keyframes fadeIn{
-        from{opacity:0;transform:translateY(20px);}
-        to{opacity:1;transform:translateY(0);}
+        from{opacity:0;transform:translateY(20px);} 
+        to{opacity:1;transform:translateY(0);} 
     }
 
     button{
@@ -89,42 +93,42 @@
 <body>
 
 <div class="container">
-    <h1>Happy Valentine’s Day ❤️</h1>
+    <h1>Happy Valentine’s Day, Cupcake 💖</h1>
+    <div class="date">Since 23 September ❤️</div>
 
     <p>
-        My favourite place isn’t a city or a moment…  
-        it’s wherever you are.
+        Out of everyone in every place and every possible moment…
+        I somehow found you. And I’d choose you again — every time.
     </p>
 
     <p>
-        If I had a thousand timelines like in Stranger Things,  
-        I’d still find you in every single one.
+        If there were infinite timelines like Stranger Things,
+        I’d still cross every world just to find you again.
     </p>
 
     <p>
-        Like Percy Jackson chose the sea,  
-        my heart somehow always chooses you.
+        Like Percy Jackson belongs to the sea,
+        my heart belongs with you.
     </p>
 
     <p>
-        And in true Bridgerton fashion…  
-        you are, and always will be,  
+        In true Bridgerton fashion —
+        you are, and always will be,
         the object of all my affection.
     </p>
 
     <div class="quote">
-        Forever. In this universe and the next.
+        Pink skies, blue dreams, and you — my favourite forever.
     </div>
 
-    <button onclick="loveMessage()">Click me 💌</button>
+    <button onclick="loveMessage()">Open my heart 💌</button>
 </div>
 
 <script>
 function loveMessage(){
-    alert("I don’t just love you today. I choose you — every day.");
+    alert("I loved you yesterday, I love you today, and I’ll love you in every tomorrow. Happy Valentine’s Day Cupcake 💕");
 }
 
-/* floating hearts */
 setInterval(()=>{
     let heart=document.createElement("div");
     heart.className="heart";
@@ -135,8 +139,7 @@ setInterval(()=>{
     setTimeout(()=>heart.remove(),6000);
 },400);
 
-/* flowers */
-const flowers=["🌹","🌸","🌺","💐","🌷"];
+const flowers=["🌷","🌹","🌹","🌸","💐","🌺","🤍🌹","❤️🌹"];
 setInterval(()=>{
     let flower=document.createElement("div");
     flower.className="flower";
