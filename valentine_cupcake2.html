@@ -8,48 +8,40 @@
 <style>
 body{
 margin:0;
-min-height:100vh;
-background:linear-gradient(135deg,#ff8ecf,#8ecbff);
 font-family:'Segoe UI',sans-serif;
-text-align:center;
+background:linear-gradient(135deg,#ff8ecf,#8ecbff);
 color:white;
-transition:background 1s;
-overflow-x:hidden;
+text-align:center;
 }
 
-/* pages */
-.page{
-position:absolute;
-inset:0;
+/* sections */
+section{
+min-height:100vh;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-padding:20px;
-opacity:1;
-transition:opacity .8s;
+padding:30px 18px;
+transition:opacity .6s;
 }
 
-.hidden{opacity:0;pointer-events:none}
+.hidden{display:none}
 
-/* containers */
-.container{max-width:750px;animation:fadeIn 2s}
+/* card */
 .card{
-max-width:820px;
-padding:28px;
-border-radius:22px;
-background:rgba(255,255,255,.12);
+max-width:800px;
+background:rgba(255,255,255,.15);
+padding:25px;
+border-radius:20px;
 backdrop-filter:blur(10px);
-box-shadow:0 20px 50px rgba(0,0,0,.35);
-max-height:90vh;
-overflow-y:auto;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 
-h1{font-size:2.6em;margin-bottom:10px}
+h1{font-size:2.3em;margin-bottom:10px}
 p{font-size:1.2em;line-height:1.7}
 
-.date{opacity:.9;margin-bottom:20px}
 .quote{margin-top:20px;font-style:italic;opacity:.9}
-.sig{margin-top:20px;text-align:right;opacity:.9}
+.sig{margin-top:25px;text-align:right}
 
 /* button */
 button{
@@ -61,137 +53,97 @@ background:white;
 color:#ff4d6d;
 font-size:1.1em;
 cursor:pointer;
-transition:.3s
-}
-button:hover{transform:scale(1.08)}
-
-/* floating elements */
-.heart,.flower,.photo{
-position:fixed;
-animation:float linear infinite;
-pointer-events:none;
-z-index:0;
 }
 
-.heart{font-size:22px}
-.flower{font-size:26px}
-.photo{
-width:90px;height:90px;
-object-fit:cover;border-radius:50%;
-filter:drop-shadow(0 10px 15px rgba(0,0,0,.25))
-}
-
-@keyframes float{
-0%{transform:translateY(100vh) scale(.6);opacity:0}
-50%{opacity:1}
-100%{transform:translateY(-10vh) scale(1.1);opacity:0}
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:translateY(0)}
-}
+button:active{transform:scale(.95)}
 </style>
 </head>
 
 <body>
 
 <!-- PAGE 1 -->
-<div id="page1" class="page">
-<div class="container">
+<section id="home">
+<div class="card">
 <h1>Happy Valentine’s Day, Cupcake 💖</h1>
-<div class="date">Since 23 September ❤️</div>
+<p><b>Since 23 September ❤️</b></p>
 
-<p>Out of billions of people in this world, somehow our paths crossed — and that became my favourite coincidence. If life restarted a thousand times, I’d still hope every version leads me back to you.</p>
+<p>
+Out of billions of people in this world, somehow our paths crossed —
+and that became my favourite coincidence.
+</p>
 
-<p>If there were infinite timelines like Stranger Things, I’d still cross every world just to find you again.</p>
+<p>
+If there were infinite timelines,
+I would still find my way back to you every single time.
+</p>
 
-<p>Like Percy Jackson belongs to the sea, my heart belongs with you.</p>
+<p>
+You are not just part of my life.
+You are the part that makes everything feel right.
+</p>
 
-<p>In true Bridgerton fashion — you are, and always will be, the object of all my affection.</p>
-
-<div class="quote">Pink skies, blue dreams, and you — my favourite forever.</div>
+<div class="quote">
+Pink skies, blue dreams, and you — my favourite forever.
+</div>
 
 <button onclick="openLetter()">Open my heart 💌</button>
 </div>
-</div>
+</section>
 
 <!-- PAGE 2 -->
-<div id="page2" class="page hidden">
+<section id="letter" class="hidden">
 <div class="card">
+
 <h1>To The Love Of My Life</h1>
 
 <p>
-I don’t think you realize how quietly you took up space in my life. It wasn’t sudden, it wasn’t loud. It just happened naturally. One day you were someone I talked to, and without noticing, you became someone I needed to hear from.
-
-You turn ordinary moments into little sparks I look forward to. A notification from you makes my day. Talking to you never feels empty — it feels like home, even through a screen.
-
-I catch myself wanting to tell you everything. The random thoughts. The small moments no one else would care about. They matter because it’s you.
-
-With you, I don’t have to pretend. I don’t have to be impressive. I can just be myself, and somehow that’s enough.
-
-Distance doesn’t change this. If anything, it makes me more certain. This isn’t convenience — it’s choosing you, again and again.
-
-I don’t know exactly what the future looks like, but I know I want you in it. Not as a memory, but as my person.
-
-So this Valentine’s Day, and every ordinary day, I’m choosing you. Always.
+I don’t think you realize how quietly you took up space in my life.
+It wasn’t sudden and it wasn’t loud.
+It just happened naturally.
+One day you were someone I talked to,
+and without noticing, you became someone I needed to hear from.
 </p>
 
-<p class="sig">Yours, in every timeline ❤️</p>
+<p>
+You make ordinary moments feel important.
+A message from you changes my whole mood.
+Talking to you feels like home,
+even through a screen.
+</p>
+
+<p>
+With you I don’t have to pretend.
+I can just be myself and somehow that is enough.
+Distance doesn’t change how I feel.
+If anything, it makes me more certain.
+</p>
+
+<p>
+So this Valentine’s Day and every normal day,
+I am choosing you.
+Not once.
+Not sometimes.
+Always.
+</p>
+
+<p class="sig">Yours in every lifetime ❤️</p>
 
 <button onclick="goBack()">Go back</button>
+
 </div>
-</div>
+</section>
 
 <script>
-let floating=[];
-let active=true;
-const MAX_FLOAT=25;
-
-function spawn(type,content,duration){
-if(!active) return;
-
-if(floating.length>MAX_FLOAT){
-floating[0].remove();
-floating.shift();
-}
-
-const el=document.createElement(type==='img'?'img':'div');
-el.className=type==='img'?'photo':type;
-
-if(type==='img') el.src=content;
-else el.innerHTML=content;
-
-el.style.left=Math.random()*100+'vw';
-el.style.animationDuration=duration+'s';
-
-document.body.appendChild(el);
-floating.push(el);
-
-setTimeout(()=>{
-el.remove();
-floating=floating.filter(e=>e!==el);
-},duration*1000);
-}
-
-/* animations */
-setInterval(()=>spawn('heart','❤️',6+Math.random()*3),1000);
-const flowers=['🌷','🌹','🌸','💐','🌺','🤍🌹','❤️🌹'];
-setInterval(()=>spawn('flower',flowers[Math.floor(Math.random()*flowers.length)],7+Math.random()*3),1600);
-
-/* page switch */
 function openLetter(){
-active=false;
-document.body.style.background='linear-gradient(160deg,#1b1b2f,#162447,#1f4068)';
-document.getElementById('page1').classList.add('hidden');
-document.getElementById('page2').classList.remove('hidden');
+document.getElementById("home").classList.add("hidden");
+document.getElementById("letter").classList.remove("hidden");
+window.scrollTo(0,0);
 }
 
 function goBack(){
-active=true;
-document.body.style.background='linear-gradient(135deg,#ff8ecf,#8ecbff)';
-document.getElementById('page2').classList.add('hidden');
-document.getElementById('page1').classList.remove('hidden');
+document.getElementById("letter").classList.add("hidden");
+document.getElementById("home").classList.remove("hidden");
+window.scrollTo(0,0);
 }
 </script>
 
