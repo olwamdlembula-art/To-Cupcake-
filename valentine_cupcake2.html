@@ -88,6 +88,14 @@ button:hover{
   will-change:transform;
 }
 
+.float img{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 8px 18px rgba(0,0,0,.35);
+}
+
 @keyframes fall{
   to{
     transform:translateY(110vh) rotate(360deg);
@@ -104,8 +112,10 @@ button:hover{
 
 <body>
 
-<!-- Background Music -->
-<audio id="bgMusic" src="die-for-you.mp3" loop></audio>
+<!-- AUDIO (mobile-safe) -->
+<audio id="bgMusic" preload="auto" loop>
+  <source src="./die-for-you.mp3" type="audio/mpeg">
+</audio>
 
 <!-- PAGE 1 -->
 <div id="page1" class="page">
@@ -114,9 +124,9 @@ button:hover{
     <div class="date">Since 23 September ❤️</div>
 
     <p>Out of billions of people in this world, somehow our paths crossed and that became my favourite coincidence.</p>
-    <p>If there were infinite timelines like Stranger Things, I’d still find you in every single one.</p>
-    <p>Like Percy Jackson belongs to the sea, my heart belongs with you.</p>
-    <p>In true Bridgerton fashion, you are the object of all my affection.</p>
+    <p>If there were infinite timelines, I’d still find you in every single one.</p>
+    <p>My heart belongs with you.</p>
+    <p>You are the object of all my affection.</p>
 
     <div class="quote">Pink skies, blue dreams, and you — my favourite forever.</div>
 
@@ -135,73 +145,89 @@ button:hover{
 </div>
 
 <script>
-/* Optimized Floating Animation */
-const flowers = ["🌷","🌷","🌹","🤍🌹","❤️🌹","🌸","💐"];
-const hearts = ["❤️","💖","💕"];
-let maxFloat = 25;
 
+/* FILE PATHS — MUST MATCH GITHUB EXACTLY */
+const flowers=["🌷","🌷","🌹","🤍🌹","❤️🌹","🌸","💐"];
+const hearts=["❤️","💖","💕"];
+const photos=["./her.png","./me.png"];
+
+let maxFloat=25;
+
+/* Floating animation optimized */
 function createFloat(){
-  if(document.getElementById('page2').classList.contains('hidden')){
-    const el = document.createElement("div");
-    el.className = "float";
-    el.innerHTML = Math.random() > 0.4 ? 
-        flowers[Math.floor(Math.random()*flowers.length)] :
-        hearts[Math.floor(Math.random()*hearts.length)];
+  if(!document.getElementById('page2').classList.contains('hidden')) return;
 
-    el.style.left = Math.random()*100 + "vw";
-    el.style.fontSize = (20 + Math.random()*20) + "px";
-    el.style.animationDuration = (6 + Math.random()*4) + "s";
+  const wrapper=document.createElement("div");
+  wrapper.className="float";
+  wrapper.style.left=Math.random()*100+"vw";
+  wrapper.style.animationDuration=(6+Math.random()*4)+"s";
 
-    document.body.appendChild(el);
-
-    setTimeout(()=>{ el.remove(); },10000);
+  if(Math.random()<0.18){
+    const img=document.createElement("img");
+    img.src=photos[Math.floor(Math.random()*photos.length)];
+    wrapper.appendChild(img);
+  }else{
+    wrapper.innerHTML=Math.random()>0.4?
+      flowers[Math.floor(Math.random()*flowers.length)]:
+      hearts[Math.floor(Math.random()*hearts.length)];
+    wrapper.style.fontSize=(20+Math.random()*20)+"px";
   }
+
+  document.body.appendChild(wrapper);
+  setTimeout(()=>wrapper.remove(),10000);
 }
 
 setInterval(()=>{
-  if(document.querySelectorAll('.float').length < maxFloat){
+  if(document.querySelectorAll('.float').length<maxFloat){
     createFloat();
   }
 },800);
 
-/* Letter Typing */
-const letter = `I don’t think you realise how quietly important you became to my days. Somewhere between good mornings and late night talks, you stopped being part of my day and became the reason I looked forward to it.
 
-Every time “Die For You” plays, I think about us. The way The Weeknd sings about loving someone through distance, through pride, through everything it reminds me of how I feel about you. I would cross oceans of silence, fight through misunderstandings, and choose you over and over again.
+/* Letter typing */
+const letter=`I don’t think you realise how quietly important you became to my days. Somewhere between good mornings and late night talks, you became the reason I look forward to tomorrow.
 
-When I hear that song, I don’t just hear lyrics — I hear a promise. A promise that some loves are worth fighting for. Ours is one of them.
+Every time Die For You plays, I think about us. Loving someone through distance, pride, and everything life throws — that's what you feel like to me.
 
-You are my comfort. My peace. My favourite notification.
+I would choose you again and again. Not just today, but on ordinary days too.
 
-So this is me choosing you not just today, but on ordinary days too.
+You are my comfort, my peace, and my favourite notification.
 
-And if loving you means I’d die for you, then loving you also means I’ll live for you, grow for you, and build something beautiful with you.`;
+And if loving you means I'd die for you, it also means I'll live for you, grow for you, and build something beautiful with you.`;
 
-let i = 0;
+let i=0;
 function typeLetter(){
-  const el = document.getElementById("typed");
-  el.innerHTML = "";
-  let typing = setInterval(()=>{
-    el.innerHTML += letter[i] === "\n" ? "<br><br>" : letter[i];
+  const el=document.getElementById("typed");
+  el.innerHTML="";
+  i=0;
+  let typing=setInterval(()=>{
+    el.innerHTML+=letter[i]==="\n"?"<br><br>":letter[i];
     i++;
-    if(i >= letter.length) clearInterval(typing);
+    if(i>=letter.length)clearInterval(typing);
   },25);
 }
 
+/* OPEN LETTER */
 function openLetter(){
   document.body.style.background="linear-gradient(160deg,#1b1b2f,#162447,#1f4068)";
   document.getElementById("page1").classList.add("hidden");
   document.getElementById("page2").classList.remove("hidden");
-  document.getElementById("bgMusic").play().catch(()=>{});
+
+  const music=document.getElementById("bgMusic");
+  music.currentTime=0;
+  music.play().catch(()=>{});
+
   typeLetter();
 }
 
+/* BACK */
 function goBack(){
   document.body.style.background="linear-gradient(135deg,#ff8ecf,#8ecbff)";
   document.getElementById("page2").classList.add("hidden");
   document.getElementById("page1").classList.remove("hidden");
 }
+
 </script>
 
 </body>
-    </html>
+</html>
