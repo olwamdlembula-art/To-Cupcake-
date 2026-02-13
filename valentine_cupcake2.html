@@ -6,138 +6,202 @@
 <title>For Cupcake ❤️</title>
 
 <style>
+*{box-sizing:border-box}
+
 body{
-margin:0;
-font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#ff8ecf,#8ecbff);
-color:white;
-text-align:center;
+  margin:0;
+  min-height:100vh;
+  font-family:'Segoe UI',sans-serif;
+  text-align:center;
+  color:white;
+  overflow-x:hidden;
+  background:linear-gradient(135deg,#ff8ecf,#8ecbff);
+  transition:background 1s ease;
 }
 
-/* sections */
-section{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:30px 18px;
-transition:opacity .6s;
+/* Pages */
+.page{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px 20px;
 }
 
 .hidden{display:none}
 
-/* card */
+.container{
+  max-width:750px;
+  animation:fadeIn 1.5s ease;
+}
+
+h1{font-size:2.5em;margin-bottom:10px}
+.date{opacity:.9;margin-bottom:20px}
+p{font-size:1.15em;line-height:1.7}
+
+.quote{
+  margin-top:20px;
+  font-style:italic;
+  opacity:.9;
+}
+
+/* Card */
 .card{
-max-width:800px;
-background:rgba(255,255,255,.15);
-padding:25px;
-border-radius:20px;
-backdrop-filter:blur(10px);
-box-shadow:0 10px 30px rgba(0,0,0,.3);
+  max-width:820px;
+  padding:30px;
+  border-radius:22px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);
 }
 
-h1{font-size:2.3em;margin-bottom:10px}
-p{font-size:1.2em;line-height:1.7}
+.sig{
+  margin-top:20px;
+  text-align:right;
+  font-style:italic;
+}
 
-.quote{margin-top:20px;font-style:italic;opacity:.9}
-.sig{margin-top:25px;text-align:right}
-
-/* button */
+/* Button */
 button{
-margin-top:25px;
-padding:12px 22px;
-border:none;
-border-radius:25px;
-background:white;
-color:#ff4d6d;
-font-size:1.1em;
-cursor:pointer;
+  margin-top:25px;
+  padding:12px 22px;
+  border:none;
+  border-radius:25px;
+  background:white;
+  color:#ff4d6d;
+  font-size:1em;
+  cursor:pointer;
+  transition:.3s;
 }
 
-button:active{transform:scale(.95)}
+button:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 20px rgba(255,255,255,0.6);
+}
+
+/* Floating elements */
+.float{
+  position:fixed;
+  top:-10vh;
+  pointer-events:none;
+  animation:fall linear forwards;
+  will-change:transform;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
 </style>
 </head>
 
 <body>
 
+<!-- Background Music -->
+<audio id="bgMusic" src="die-for-you.mp3" loop></audio>
+
 <!-- PAGE 1 -->
-<section id="home">
-<div class="card">
-<h1>Happy Valentine’s Day, Cupcake 💖</h1>
-<p><b>Since 23 September ❤️</b></p>
+<div id="page1" class="page">
+  <div class="container">
+    <h1>Happy Valentine’s Day, Cupcake 💖</h1>
+    <div class="date">Since 23 September ❤️</div>
 
-<p>
-Out of billions of people in this world, somehow our paths crossed —
-and that became my favourite coincidence.
-</p>
+    <p>Out of billions of people in this world, somehow our paths crossed and that became my favourite coincidence.</p>
+    <p>If there were infinite timelines like Stranger Things, I’d still find you in every single one.</p>
+    <p>Like Percy Jackson belongs to the sea, my heart belongs with you.</p>
+    <p>In true Bridgerton fashion, you are the object of all my affection.</p>
 
-<p>
-If there were infinite timelines,
-I would still find my way back to you every single time.
-</p>
+    <div class="quote">Pink skies, blue dreams, and you — my favourite forever.</div>
 
-<p>
-You are not just part of my life.
-You are the part that makes everything feel right.
-</p>
-
-<div class="quote">
-Pink skies, blue dreams, and you — my favourite forever.
+    <button onclick="openLetter()">Open my heart 💌</button>
+  </div>
 </div>
-
-<button onclick="openLetter()">Open my heart 💌</button>
-</div>
-</section>
 
 <!-- PAGE 2 -->
-<section id="letter" class="hidden">
-<div class="card">
-
-<h1>To The Love Of My Life</h1>
-
-<p>
-I don’t think you realize how quietly you took up space in my life. It wasn’t sudden, it wasn’t loud. It just happened naturally. One day, you were someone I talked to, and without noticing, you became someone I needed to hear from.
-You turn ordinary moments into little sparks I look forward to. A notification from you makes my day. Talking to you never feels forced or empty. It feels like home, even through a screen.
-</p>
-
-<p>
-Even quiet moments feel brighter knowing you exist somewhere in the same world as me. Songs remind me of you. Places make me wish you were there. I like how naturally you live in my thoughts.
-Distance doesn’t change this. If anything, it makes me more certain. This isn’t about convenience. It’s about choosing you over and over again.
-</p>
-
-<p>
-With you I don’t have to pretend.
-I can just be myself and somehow that is enough.
-Distance doesn’t change how I feel.
-If anything, it makes me more certain.
-</p>
-
-<p>
-I don’t know exactly what the future looks like, but I know I want you in it. Laughing with me, talking with me, existing beside me. Not just as a memory, but as my person.
-So this Valentine’s Day, and every ordinary day, I’m choosing you. Quiet evenings, random afternoons, moments when nothing happens except you being in my heart. I’m choosing you. Always.
-</p>
-
-<p class="sig">Yours in every lifetime ❤️</p>
-
-<button onclick="goBack()">Go back</button>
-
+<div id="page2" class="page hidden">
+  <div class="card">
+    <h1>To the one who found me 🌙</h1>
+    <p id="typed"></p>
+    <p class="sig">Yours, in every timeline ❤️</p>
+    <button onclick="goBack()">Go back</button>
+  </div>
 </div>
-</section>
 
 <script>
+/* Optimized Floating Animation */
+const flowers = ["🌷","🌷","🌹","🤍🌹","❤️🌹","🌸","💐"];
+const hearts = ["❤️","💖","💕"];
+let maxFloat = 25;
+
+function createFloat(){
+  if(document.getElementById('page2').classList.contains('hidden')){
+    const el = document.createElement("div");
+    el.className = "float";
+    el.innerHTML = Math.random() > 0.4 ? 
+        flowers[Math.floor(Math.random()*flowers.length)] :
+        hearts[Math.floor(Math.random()*hearts.length)];
+
+    el.style.left = Math.random()*100 + "vw";
+    el.style.fontSize = (20 + Math.random()*20) + "px";
+    el.style.animationDuration = (6 + Math.random()*4) + "s";
+
+    document.body.appendChild(el);
+
+    setTimeout(()=>{ el.remove(); },10000);
+  }
+}
+
+setInterval(()=>{
+  if(document.querySelectorAll('.float').length < maxFloat){
+    createFloat();
+  }
+},800);
+
+/* Letter Typing */
+const letter = `I don’t think you realise how quietly important you became to my days. Somewhere between good mornings and late night talks, you stopped being part of my day and became the reason I looked forward to it.
+
+Every time “Die For You” plays, I think about us. The way The Weeknd sings about loving someone through distance, through pride, through everything it reminds me of how I feel about you. I would cross oceans of silence, fight through misunderstandings, and choose you over and over again.
+
+When I hear that song, I don’t just hear lyrics — I hear a promise. A promise that some loves are worth fighting for. Ours is one of them.
+
+You are my comfort. My peace. My favourite notification.
+
+So this is me choosing you not just today, but on ordinary days too.
+
+And if loving you means I’d die for you, then loving you also means I’ll live for you, grow for you, and build something beautiful with you.`;
+
+let i = 0;
+function typeLetter(){
+  const el = document.getElementById("typed");
+  el.innerHTML = "";
+  let typing = setInterval(()=>{
+    el.innerHTML += letter[i] === "\n" ? "<br><br>" : letter[i];
+    i++;
+    if(i >= letter.length) clearInterval(typing);
+  },25);
+}
+
 function openLetter(){
-document.getElementById("home").classList.add("hidden");
-document.getElementById("letter").classList.remove("hidden");
-window.scrollTo(0,0);
+  document.body.style.background="linear-gradient(160deg,#1b1b2f,#162447,#1f4068)";
+  document.getElementById("page1").classList.add("hidden");
+  document.getElementById("page2").classList.remove("hidden");
+  document.getElementById("bgMusic").play().catch(()=>{});
+  typeLetter();
 }
 
 function goBack(){
-document.getElementById("letter").classList.add("hidden");
-document.getElementById("home").classList.remove("hidden");
-window.scrollTo(0,0);
+  document.body.style.background="linear-gradient(135deg,#ff8ecf,#8ecbff)";
+  document.getElementById("page2").classList.add("hidden");
+  document.getElementById("page1").classList.remove("hidden");
 }
 </script>
 
 </body>
-</html>
+    </html>
