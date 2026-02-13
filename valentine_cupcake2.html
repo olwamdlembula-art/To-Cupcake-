@@ -79,7 +79,7 @@ button:hover{
   box-shadow:0 0 20px rgba(255,255,255,0.6);
 }
 
-/* Floating elements */
+/* Floating */
 .float{
   position:fixed;
   top:-10vh;
@@ -97,10 +97,7 @@ button:hover{
 }
 
 @keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(360deg);
-    opacity:0;
-  }
+  to{transform:translateY(110vh) rotate(360deg);opacity:0;}
 }
 
 @keyframes fadeIn{
@@ -112,10 +109,18 @@ button:hover{
 
 <body>
 
-<!-- AUDIO (mobile-safe) -->
+<!-- AUDIO -->
 <audio id="bgMusic" preload="auto" loop>
   <source src="./die-for-you.mp3" type="audio/mpeg">
 </audio>
+
+<!-- MOBILE AUDIO UNLOCK -->
+<script>
+document.addEventListener("click", ()=>{
+  const music=document.getElementById("bgMusic");
+  music.play().then(()=>music.pause()).catch(()=>{});
+},{once:true});
+</script>
 
 <!-- PAGE 1 -->
 <div id="page1" class="page">
@@ -145,15 +150,13 @@ button:hover{
 </div>
 
 <script>
-
-/* FILE PATHS — MUST MATCH GITHUB EXACTLY */
+/* FLOATING ITEMS */
 const flowers=["🌷","🌷","🌹","🤍🌹","❤️🌹","🌸","💐"];
 const hearts=["❤️","💖","💕"];
 const photos=["./her.png","./me.png"];
 
 let maxFloat=25;
 
-/* Floating animation optimized */
 function createFloat(){
   if(!document.getElementById('page2').classList.contains('hidden')) return;
 
@@ -183,17 +186,16 @@ setInterval(()=>{
   }
 },800);
 
-
-/* Letter typing */
+/* LETTER */
 const letter=`I don’t think you realise how quietly important you became to my days. Somewhere between good mornings and late night talks, you became the reason I look forward to tomorrow.
 
-Every time Die For You plays, I think about us. Loving someone through distance, pride, and everything life throws — that's what you feel like to me.
+Every time Die For You plays, I think about us. Loving someone through distance and everything life throws — that's what you feel like to me.
 
 I would choose you again and again. Not just today, but on ordinary days too.
 
 You are my comfort, my peace, and my favourite notification.
 
-And if loving you means I'd die for you, it also means I'll live for you, grow for you, and build something beautiful with you.`;
+And if loving you means I'd die for you, it also means I'll live for you and build something beautiful with you.`;
 
 let i=0;
 function typeLetter(){
@@ -207,7 +209,6 @@ function typeLetter(){
   },25);
 }
 
-/* OPEN LETTER */
 function openLetter(){
   document.body.style.background="linear-gradient(160deg,#1b1b2f,#162447,#1f4068)";
   document.getElementById("page1").classList.add("hidden");
@@ -220,13 +221,11 @@ function openLetter(){
   typeLetter();
 }
 
-/* BACK */
 function goBack(){
   document.body.style.background="linear-gradient(135deg,#ff8ecf,#8ecbff)";
   document.getElementById("page2").classList.add("hidden");
   document.getElementById("page1").classList.remove("hidden");
 }
-
 </script>
 
 </body>
